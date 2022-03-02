@@ -24,7 +24,7 @@ def main(dataset, split, data_dir, collection, queries):
     if data_dir == None:
         #### Download nfcorpus.zip dataset and unzip the dataset
         url = "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/{}.zip".format(dataset)
-        out_dir = os.path.join(pathlib.Path(__file__).parent.absolute(), "..", "..", "datasets")
+        out_dir = os.path.join(pathlib.Path(__file__).parent.absolute(), "datasets")
         data_dir = util.download_and_unzip(url, out_dir)
         logging.info("Downloaded {} BEIR dataset: {}".format(dataset, out_dir))
 
