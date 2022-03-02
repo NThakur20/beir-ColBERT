@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--part-range', dest='part_range', default=None, type=str)
     parser.add_argument('--batch', dest='batch', default=False, action='store_true')
     parser.add_argument('--depth', dest='depth', default=1000, type=int)
+    parser.add_argument('--ranking_dir', dest='ranking_dir', default=None, type=str)
 
     args = parser.parse()
 

@@ -4,6 +4,7 @@ import faiss
 import random
 import torch
 import itertools
+import shutil
 
 from colbert.utils.runs import Run
 from multiprocessing import Pool
@@ -57,5 +58,9 @@ def retrieve(args):
 
     print('\n\n')
     print(ranking_logger.filename)
+    if args.ranking_dir:
+        os.makedirs(args.ranking_dir, exist_ok=True)
+        shutil.copyfile(ranking_logger.filename, os.path.join(args.ranking_dir, "ranking.tsv"))
+        print("#> Copied to {}".format(os.path.join(args.ranking_dir, "ranking.tsv")))
     print("#> Done.")
     print('\n\n')
