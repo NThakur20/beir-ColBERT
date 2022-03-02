@@ -20,7 +20,7 @@ def load_queries(queries_path):
     with open(queries_path) as f:
         for line in f:
             qid, query, *_ = line.strip().split('\t')
-            qid = int(qid)
+            # qid = int(qid)
 
             assert (qid not in queries), ("Query QID", qid, "is repeated!")
             queries[qid] = query
@@ -67,7 +67,7 @@ def load_topK(topK_path):
                 print(line_idx, end=' ', flush=True)
 
             qid, pid, query, passage = line.split('\t')
-            qid, pid = int(qid), int(pid)
+            # qid, pid = int(qid), int(pid)
 
             assert (qid not in queries) or (queries[qid] == query)
             queries[qid] = query
@@ -100,7 +100,7 @@ def load_topK_pids(topK_path, qrels):
                 print(line_idx, end=' ', flush=True)
 
             qid, pid, *rest = line.strip().split('\t')
-            qid, pid = int(qid), int(pid)
+            # qid, pid = int(qid), int(pid)
 
             topK_pids[qid].append(pid)
 
