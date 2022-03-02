@@ -122,17 +122,21 @@ class CollectionEncoder():
         for line_idx, line in zip(range(offset, endpos), lines):
             line_parts = line.strip().split('\t')
 
-            pid, passage, *other = line_parts
+            try:
+                pid, passage, *other = line_parts
 
-            assert len(passage) >= 1
+                assert len(passage) >= 1
 
-            if len(other) >= 1:
-                title, *_ = other
-                passage = title + ' | ' + passage
-
+                if len(other) >= 1:
+                    title, *_ = other
+                    passage = title + ' | ' + passage
+            
+            except:
+                print_message(line_parts)
+                passage = ""
+            
             batch.append(passage)
-
-            assert pid == 'id' or int(pid) == line_idx
+            # assert pid == 'id' or int(pid) == line_idx
 
         return batch
 
