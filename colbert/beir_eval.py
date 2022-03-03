@@ -40,9 +40,9 @@ def main(dataset, split, data_dir, collection, rankings, k_values):
     for _, row in tsv_reader(rankings):
         qid, doc_id, rank = row[0], row[1], int(row[2])
         if qid not in results:
-            results[qid] = {inv_map[str(doc_id)]: 1001 - rank}
+            results[qid] = {inv_map[str(doc_id)]: 1 / (rank + 1)}
         else:
-            results[qid][inv_map[str(doc_id)]] = 1001 - rank
+            results[qid][inv_map[str(doc_id)]] = 1 / (rank + 1)
 
     #### Evaluate your retrieval using NDCG@k, MAP@K ...
     evaluator = EvaluateRetrieval()
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_dir', type=str, default=None, help='Path to a BEIR repository (incase already downloaded or custom)')
     parser.add_argument('--collection', type=str, help='Path to the ColBERT collection file')
     parser.add_argument('--rankings', required=True, type=str, help='Path to the ColBERT generated rankings file')
-    parser.add_argument('--k_values', nargs='+', type=int, default=[1,3,5,10,100,1000])
+    parser.add_argument('--k_values', nargs='+', type=int, default=[1,3,5,10,100])
     args = parser.parse_args()
     main(**vars(args))
 
