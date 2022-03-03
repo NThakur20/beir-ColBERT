@@ -27,7 +27,7 @@ export RANKING_DIR="rankings/${dataset}"
 export NUM_PARTITIONS=96
 
 # Some Index Name to store the faiss index
-export INDEX_NAME=SCIFACT
+export INDEX_NAME=NFCORPUS
 
 # Setting LD_LIBRARY_PATH for CUDA (Incase required!)
 # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ukp/thakur/cuda/lib64/
