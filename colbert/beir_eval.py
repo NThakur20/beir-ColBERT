@@ -39,10 +39,11 @@ def main(dataset, split, data_dir, collection, rankings, k_values):
     #### Results ####
     for _, row in tsv_reader(rankings):
         qid, doc_id, rank = row[0], row[1], int(row[2])
-        if qid not in results:
-            results[qid] = {inv_map[str(doc_id)]: 1 / (rank + 1)}
-        else:
-            results[qid][inv_map[str(doc_id)]] = 1 / (rank + 1)
+        if qid != inv_map[str(doc_id)]:
+            if qid not in results:
+                results[qid] = {inv_map[str(doc_id)]: 1 / (rank + 1)}
+            else:
+                results[qid][inv_map[str(doc_id)]] = 1 / (rank + 1)
 
     #### Evaluate your retrieval using NDCG@k, MAP@K ...
     evaluator = EvaluateRetrieval()
